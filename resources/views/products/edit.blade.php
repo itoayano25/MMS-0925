@@ -37,6 +37,11 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="comment" class="form-label">コメント</label>
+                            <textarea id="comment" name="comment" class="form-control" rows="3">{{ $product->comment }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="img_path" class="form-label">商品画像</label>
                                 <input type="file" id="img_path" name="img_path" class="form-control">
                                 <img src="{{ asset($product->img_path) }}" alt="商品画像" class="product-image">
