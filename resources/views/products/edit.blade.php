@@ -8,7 +8,7 @@
                 <div class="card-header"><h2>商品情報を変更する</h2></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('products.update',$product) }}" enctype="multipart/>form-data">
+                    <form method="POST" action="{{ route('products.update',$product) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

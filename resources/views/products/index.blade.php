@@ -26,6 +26,7 @@
                 <tbody>
                     @foreach ($products as $product)
                         <tr>
+                            <td>{{ $product->id}}</td>
                             <td>{{ $product->product_name }}</td>
                             <td>{{ $product->company->company_name }}</td>
                             <td>{{ $product->price }}</td>
