@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function create()
     {
         $companies = Company::all();
-        return view('products.create',compact('companies'));
+        return view('products.create', compact('companies'));
     }
 
     /**
@@ -50,7 +50,7 @@ class ProductController extends Controller
         $product = new Product([
             'product_name' => $request->get('product_name'),
             'company_id' => $request->get('company_id'),
-            'price' => $requwst->get('price'),
+            'price' => $request->get('price'),
             'stock' => $request->get('stock'),
             'comment' => $request->get('comment'),
         ]);
