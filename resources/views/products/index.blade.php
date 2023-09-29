@@ -8,6 +8,24 @@
 
         {{-- 検索のフォームを書く　テキスト検索、セレクトボタン検索、検索ボタン --}}
 
+        <div class="search mt-5">
+            <h2>検索条件で絞り込み</h2>
+
+            <form action="{{ route('products.index') }}" method="GET" class="row g-3">
+                <div class="col-sm-12 col-md-3">
+                    <input type="text" name="search" class="form-control" placeholder="商品名" value="{{ request('search') }}">
+                </div>
+
+                {{-- 会社名セレクト検索 --}}
+
+                <div class="col-sm-12 col-md-1">
+                    <button class="btn btn-success" type="submit">検索</button>
+                </div>
+            </form>
+
+    
+        </div>
+
         <div class="products mt-5">
             <h2>商品情報</h2>
             <table class="table table-striped">
