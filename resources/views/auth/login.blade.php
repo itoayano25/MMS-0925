@@ -58,7 +58,7 @@
                                 </button>
 
                                 {{-- 新規登録用ボタン --}}
-                                <a href="{{ route('register')}}" class="btn btn-warning">新規登録</a>
+                                <a href="{{ route('register')}}" class="btn btn-warning ms-3">新規登録</a>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
