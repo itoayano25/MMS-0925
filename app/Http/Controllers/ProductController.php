@@ -13,10 +13,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('products.index',compact('products'));
+        $query = Product::query();
+
+        if($search = $request->search){
+            $query->where('product_name', 'LIKE', "%{$search}%");
+        }
+        $products = $query;
+        return view('products.index',['products'=> $products]);
     }
 
     /**
