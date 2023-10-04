@@ -12,11 +12,20 @@
             <h2>検索条件で絞り込み</h2>
 
             <form action="{{ route('products.index') }}" method="GET" class="row g-3">
+                @csrf
+                {{-- 商品名で検索 --}}
                 <div class="col-sm-12 col-md-3">
                     <input type="text" name="search" class="form-control" placeholder="商品名" value="{{ request('search') }}">
                 </div>
 
                 {{-- 会社名セレクト検索 --}}
+                <div class="col-sm-12 col-md">
+                    <select class="form-select" name="company_name" value="{{ request('company_name') }}">
+                        @foreach($companies as $company)
+                            <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                        @endforeach
+                    </select>    
+                </div>
 
                 <div class="col-sm-12 col-md-1">
                     <button class="btn btn-success" type="submit">検索</button>
@@ -67,5 +76,6 @@
             </table>
         </div>
 
+    
     </div>
 @endsection('content')
