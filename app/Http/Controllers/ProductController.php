@@ -15,13 +15,21 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $companies = Company::all();
         $query = Product::query();
 
+        // 商品名の部分一致検索
         if($search = $request->search){
             $query->where('product_name', 'LIKE', "%{$search}%");
         }
-        $products = $query;
-        return view('products.index',['products'=> $products]);
+
+        // company_nameでセレクト検索
+        if($company_name = $request->company_name){
+            $query->where('company_id', 'LIKE', "$company_name");
+        }
+
+        $products = $query->get();
+        return view('products.index',compact('products','companies'));
     }
 
     /**
@@ -110,6 +118,7 @@ class ProductController extends Controller
             'stock' => 'required',
         ]);
 
+        // 商品情報の更新
         $product->product_name = $request->product_name;
         $product->price = $request->price;
         $product->stock = $request->stock;
