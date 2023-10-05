@@ -63,8 +63,8 @@
                             <td>
                                 <a href="{{ route('products.show', $product) }}" class="btn btn-info btn-sm mx-1">詳細表示</a>
                                 <a href="{{ route('products.edit', $product) }}" class="btn btn-primary btn-sm mx-1">編集</a>
-                                {{-- deleteのアラート表示jsで書く --}}
-                                <form method="POST" action="{{ route('products.destroy', $product) }}" class="d-inline">
+                                {{-- deleteのアラート --}}
+                                <form onsubmit="return confirm('本当に削除しますか？')" method="POST" action="{{ route('products.destroy', $product) }}" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm mx-1">削除</button>
