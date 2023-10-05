@@ -23,7 +23,7 @@ class ProductController extends Controller
             $query->where('product_name', 'LIKE', "%{$search}%");
         }
 
-        // company_nameでセレクト検索
+        // company_idセレクト検索
         if($company_name = $request->company_name){
             $query->where('company_id', 'LIKE', "$company_name");
         }
