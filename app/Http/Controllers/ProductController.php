@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Company;
 
@@ -69,6 +70,7 @@ class ProductController extends Controller
         ]);
 
         if($request->hasFile('img_path')){
+            Storage::delete('/storage/' . $filePath);
             $filename = $request->img_path->getClientOriginalName();
             $filePath = $request->img_path->storeAs('products', $filename, 'public');
             $product->img_path = '/storage/' . $filePath;
@@ -122,6 +124,14 @@ class ProductController extends Controller
         $product->product_name = $request->product_name;
         $product->price = $request->price;
         $product->stock = $request->stock;
+        $product->comment = $request->comment;
+        $product->company_id = $request->company_id;
+        
+        if($request->hasFile('img_path')){
+            $filename = $request->img_path->getClientOriginalName();
+            $filePath = $request->img_path->storeAs('products', $filename, 'public');
+            $product->img_path = '/storage/' . $filePath;
+        }
 
         $product->save();
 
