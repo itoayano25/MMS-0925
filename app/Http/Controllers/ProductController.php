@@ -70,7 +70,6 @@ class ProductController extends Controller
         ]);
 
         if($request->hasFile('img_path')){
-            Storage::delete('/storage/' . $filePath);
             $filename = $request->img_path->getClientOriginalName();
             $filePath = $request->img_path->storeAs('products', $filename, 'public');
             $product->img_path = '/storage/' . $filePath;
@@ -130,6 +129,7 @@ class ProductController extends Controller
         if($request->hasFile('img_path')){
             $filename = $request->img_path->getClientOriginalName();
             $filePath = $request->img_path->storeAs('products', $filename, 'public');
+            Storage::delete('/storage/' . $filePath);
             $product->img_path = '/storage/' . $filePath;
         }
 
