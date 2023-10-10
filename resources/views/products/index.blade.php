@@ -21,6 +21,7 @@
                 {{-- 会社名セレクト検索 --}}
                 <div class="col-sm-12 col-md">
                     <select class="form-select" name="company_name" value="{{ request('company_name') }}">
+                        <option value="">未選択</option>
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach
