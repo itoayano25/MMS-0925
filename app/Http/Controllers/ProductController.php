@@ -10,6 +10,11 @@ use App\Models\Company;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->company = new Company();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +32,7 @@ class ProductController extends Controller
             $query->where('company_id', 'LIKE', "$company_name");
         }
         $products = $query->get();
-        $companies = Company::all();
+        $companies = $this->company->findCompanies();
         return view('products.index',compact('products','companies'));
     }
 
@@ -38,7 +43,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $companies = Company::all();
+        $companies = $this->company->findCompanies();
         return view('products.create', compact('companies'));
     }
 
@@ -101,7 +106,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $companies = Company::all();
+        $companies = $this->company->findCompanies();
         return view('products.edit',compact('product','companies'));
     }
 
