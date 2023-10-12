@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Company;
 
@@ -16,20 +17,17 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $companies = Company::all();
         $query = Product::query();
-
-        // 商品名の部分一致検索
+        // 商品名部分一致検索
         if($search = $request->search){
             $query->where('product_name', 'LIKE', "%{$search}%");
         }
-
         // company_idセレクト検索
         if($company_name = $request->company_name){
             $query->where('company_id', 'LIKE', "$company_name");
         }
-
         $products = $query->get();
+        $companies = Company::all();
         return view('products.index',compact('products','companies'));
     }
 
@@ -50,8 +48,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // トランザクション追加
     public function store(Request $request)
     {
+        DB::transaction(function() use($request){
+
         $request->validate([
             'product_name' => 'required',
             'company_id' => 'required',
@@ -76,7 +77,7 @@ class ProductController extends Controller
         }
 
         $product->save();
-
+        });
         return redirect('products');
 
     }
@@ -111,8 +112,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // トランザクション
     public function update(Request $request, Product $product)
     {
+        DB::transaction(function() use($request,$product){
+
         $request->validate([
             'product_name' => 'required',
             'price' => 'required',
@@ -134,9 +138,8 @@ class ProductController extends Controller
         }
 
         $product->save();
-
-        return redirect()->route('products.index')
-            ->with('success','Product update successhully');
+        });
+        return redirect()->route('products.index');
     }
 
     /**
@@ -145,10 +148,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // トランザクション
     public function destroy(Product $product)
     {
-        $product->delete();
-
-        return redirect('products');
+        DB::transaction(function() use($product){
+            $product->delete();
+        });
+            return redirect('products');
     }
 }
