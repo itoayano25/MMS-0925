@@ -14,6 +14,7 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->company = new Company();
+        $this->product = new Product();
     }
     /**
      * Display a listing of the resource.
@@ -43,6 +44,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        // CompanyModelにてメソッドに変更
         $companies = $this->company->findCompanies();
         return view('products.create', compact('companies'));
     }
@@ -67,13 +69,8 @@ class ProductController extends Controller
             'img_path' => 'nullable|image|max:2048',
         ]);
 
-        $product = new Product([
-            'product_name' => $request->get('product_name'),
-            'company_id' => $request->get('company_id'),
-            'price' => $request->get('price'),
-            'stock' => $request->get('stock'),
-            'comment' => $request->get('comment'),
-        ]);
+        // ProductModelにて新規登録メソッドに変更
+        $product = $this->product->ProductRegister($request);
 
         if($request->hasFile('img_path')){
             $filename = $request->img_path->getClientOriginalName();
@@ -106,6 +103,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        // CompanyModelにてメソッドに変更
         $companies = $this->company->findCompanies();
         return view('products.edit',compact('product','companies'));
     }

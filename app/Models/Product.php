@@ -19,9 +19,21 @@ class Product extends Model
     ];
 
     
-    public function company(){
+    public function company()
+    {
         return $this->belongsTo(Company::class);
     }
 
+    public function ProductRegister($request)
+    {
+        return $this->create([
+            'product_name' => $request->product_name,
+            'company_id' => $request->company_id,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'comment' => $request->comment,
+        ]);
+
+    }
 
 }
