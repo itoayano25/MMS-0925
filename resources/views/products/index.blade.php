@@ -64,12 +64,20 @@
                             <td>
                                 <a href="{{ route('products.show', $product) }}" class="btn btn-info btn-sm mx-1">詳細表示</a>
                                 <a href="{{ route('products.edit', $product) }}" class="btn btn-primary btn-sm mx-1">編集</a>
-                                {{-- deleteのアラート --}}
-                                <form onsubmit="return confirm('本当に削除しますか？')" method="POST" action="{{ route('products.destroy', $product) }}" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm mx-1">削除</button>
-                                </form>
+                                {{-- STEP7の削除ボタン --}}
+                                {{-- <form onsubmit="return confirm('本当に削除しますか？')" method="POST" action="{{ route('products.destroy', $product) }}" class="d-inline"> --}}
+                                    {{-- @csrf --}}
+                                    {{-- @method('DELETE') --}}
+                                    {{-- <button type="submit" class="btn btn-danger btn-sm mx-1">削除</button> --}}
+                                {{-- </form> --}}
+
+                                {{-- STEP8の削除ボタン --}}
+                                    <form class="id">
+                                        <input data-product_id="{{$product->id}}" type="submit" class="btn btn-danger btn-sm mx-1" value="削除">
+                                    </form>
+
+                                {{-- 削除ボタンのjs（非同期） --}}
+                                <script src="delete.js"></script>
                             </td>
                         </tr>
                     @endforeach

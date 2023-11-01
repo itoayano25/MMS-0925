@@ -28,3 +28,5 @@ Auth::routes();
 Route::group(['middleware' => 'auth'],function(){
     Route::resource('products', ProductController::class);
 });
+
+Route::post('/destroy/{id}','ProductController@destroy');

@@ -152,11 +152,14 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     // トランザクション
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
-        DB::transaction(function() use($product){
+        // DB::transaction(function() use($product){
+            // $product->delete();
+        // });
+            // return redirect('products');
+
+            $product = Product::findOrFail($request->id);
             $product->delete();
-        });
-            return redirect('products');
     }
 }
