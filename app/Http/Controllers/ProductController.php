@@ -21,7 +21,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Product $product,Request $request)
     {
         $query = Product::query();
         // 商品名部分一致検索
@@ -35,6 +35,9 @@ class ProductController extends Controller
         $products = $query->get();
         $companies = $this->company->findCompanies();
         return view('products.index',compact('products','companies'));
+
+        // $products = Product::all();
+        // return view('products.index',compact('products'));
     }
 
     /**

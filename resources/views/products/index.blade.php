@@ -72,19 +72,16 @@
                                 {{-- </form> --}}
 
                                 {{-- STEP8の削除ボタン --}}
-                                    <form class="id">
-                                        <input data-product_id="{{$product->id}}" type="submit" class="btn btn-danger btn-sm mx-1" value="削除">
+                                    <form class="d-inline">
+                                        <button data-product_id="{{$product->id}}" type="submit" id="delete-js" class="btn btn-danger btn-sm mx-1">削除</button>
                                     </form>
-
-                                {{-- 削除ボタンのjs（非同期） --}}
-                                <script src="delete.js"></script>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-    
     </div>
+{{-- 削除のjs --}}
+<script src="{{asset('js/delete.js')}}"></script>
 @endsection('content')
