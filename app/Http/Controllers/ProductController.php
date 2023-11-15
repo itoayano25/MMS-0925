@@ -164,5 +164,6 @@ class ProductController extends Controller
 
             $product = Product::findOrFail($request->id);
             $product->delete();
+            
     }
 }

@@ -18,6 +18,7 @@ $(function() {
                 dataType: 'json',
                 data:{'id': productID},
             })
+            
             .done(function(){
                 alert('成功！');
             })

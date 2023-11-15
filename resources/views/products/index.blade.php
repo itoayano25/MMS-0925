@@ -75,6 +75,7 @@
                                     <form class="d-inline">
                                         <button data-product_id="{{$product->id}}" type="submit" id="delete-js" class="btn btn-danger btn-sm mx-1">削除</button>
                                     </form>
+                                    
                             </td>
                         </tr>
                     @endforeach
