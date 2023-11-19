@@ -1,5 +1,5 @@
 $(function() {
-    $('#delete-js').click(function() {
+    $(".delete-btn").click(function() {
         var deleteConfirm = confirm('削除してよろしいですか？');
 
         if(deleteConfirm == true){
@@ -17,13 +17,6 @@ $(function() {
                 url: '/destroy/'+ productID,
                 dataType: 'json',
                 data:{'id': productID},
-            })
-            
-            .done(function(){
-                alert('成功！');
-            })
-            .fail(function(){
-                alert('失敗！')
             })
         }else{
             (function(e) {
