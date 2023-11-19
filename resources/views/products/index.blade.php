@@ -6,7 +6,7 @@
 
         <a href="{{ route('products.create')}}" class="btn btn-primary mb-3">商品新規登録</a>
 
-        {{-- 検索のフォームを書く　テキスト検索、セレクトボタン検索、検索ボタン --}}
+        {{-- 検索のフォームを書く、テキスト検索、セレクトボタン検索、検索ボタン --}}
 
         <div class="search mt-5">
             <h2>検索条件で絞り込み</h2>
@@ -14,12 +14,12 @@
             <form action="{{ route('products.index') }}" method="GET" class="row g-3">
                 @csrf
                 {{-- 商品名で検索 --}}
-                <div class="col-sm-12 col-md-3">
+                <div class="col-sm-12">
                     <input type="text" name="search" class="form-control" placeholder="商品名" value="{{ request('search') }}">
                 </div>
 
                 {{-- 会社名セレクト検索 --}}
-                <div class="col-sm-12 col-md">
+                <div class="col-sm-12">
                     <select class="form-select" name="company_name" value="{{ request('company_name') }}">
                         <option value="">未選択</option>
                         @foreach($companies as $company)
@@ -28,7 +28,24 @@
                     </select>    
                 </div>
 
-                <div class="col-sm-12 col-md-1">
+                {{-- STEP８の非同期の価格下～上限検索 --}}
+                <div class="col-sm-6">
+                    <input type="number" name="min_price" class="form-control" placeholder="最小価格" value="{{ request('min_price') }}">
+                </div>
+                <div class="col-sm-6">
+                    <input type="number" name="max_price" class="form-control" placeholder="最大価格" value="{{ request('max_price') }}">
+                </div>
+
+                {{-- STEP８の非同期の在庫下～上限検索 --}}
+                <div class="col-sm-6">
+                    <input type="number" name="min_stock" class="form-control" placeholder="最小在庫" value="{{ request('min_stock') }}">
+                </div>
+                <div class="col-sm-6">
+                    <input type="number" name="max_stock" class="form-control" placeholder="最大在庫" value="{{ request('max_stock') }}">
+                </div>
+
+                {{-- 検索ボタン --}}
+                <div class="col-sm-12">
                     <button class="btn btn-success" type="submit">検索</button>
                 </div>
             </form>
