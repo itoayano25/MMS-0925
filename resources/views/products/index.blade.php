@@ -46,7 +46,7 @@
 
                 {{-- 検索ボタン --}}
                 <div class="col-sm-12">
-                    <button class="btn btn-success" type="submit">検索</button>
+                    <button class="btn btn-success btn-search" type="submit">検索</button>
                 </div>
             </form>
 
