@@ -28,16 +28,35 @@ class ProductController extends Controller
         if($search = $request->search){
             $query->where('product_name', 'LIKE', "%{$search}%");
         }
+        // 価格の下限指定
+        if($min_price = $request->min_price){
+            $query->where('price', '>=', $min_price);
+        }
+        // 価格の上限指定
+        if($max_price = $request->max_price){
+            $query->where('price', '<=', $max_price);
+        }
+        //在庫の下限指定
+        if($min_stock = $request->min_stock){
+            $query->where('stock', '>=', $min_stock);
+        }
+        //在庫の下限指定
+        if($max_stock = $request->max_stock){
+            $query->where('stock', '>=', $max_stock);
+        }
         // company_idセレクト検索
         if($company_name = $request->company_name){
             $query->where('company_id', 'LIKE', "$company_name");
         }
+        
         $products = $query->get();
-        $companies = $this->company->findCompanies();
-        return view('products.index',compact('products','companies'));
 
-        // $products = Product::all();
-        // return view('products.index',compact('products'));
+        // CompanyModelからDBの情報取得
+        $companies = $this->company->findCompanies();
+
+        //STEP8.doneへのjsonDBを渡す
+        //return response()->json(['products' => $products, 'companies' => $companies]);
+        return view('products.index',compact('products','companies'));
     }
 
     /**
