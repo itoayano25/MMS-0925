@@ -11,7 +11,7 @@
         <div class="search mt-5">
             <h2>検索条件で絞り込み</h2>
 
-            <form action="{{ route('products.index') }}" method="GET" class="row g-3">
+            <form action="{{ route('products.index') }}" method="GET" class="row g-3 form_search">
                 @csrf
                 {{-- 商品名で検索 --}}
                 <div class="col-sm-12">
@@ -102,4 +102,6 @@
     </div>
 {{-- 削除のjs --}}
 <script src="{{asset('js/delete.js')}}"></script>
+{{-- 検索のjs --}}
+<script src="{{asset('js/search.js')}}"></script>
 @endsection('content')
