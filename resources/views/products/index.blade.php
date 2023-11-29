@@ -53,7 +53,7 @@
     
         </div>
 
-        <div class="products mt-5">
+        <div id="products_table"  class="products mt-5">
             <h2>商品情報</h2>
             <table class="table table-striped">
                 <thead>
