@@ -55,7 +55,7 @@
 
         <div id="products_table"  class="products mt-5">
             <h2>商品情報</h2>
-            <table class="table table-striped">
+            <table class="table table-striped table_sort" id="tablesorter">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -104,4 +104,6 @@
 <script src="{{asset('js/delete.js')}}"></script>
 {{-- 検索のjs --}}
 <script src="{{asset('js/search.js')}}"></script>
+{{-- ソートのjs --}}
+<script src="{{asset('js/sort.js')}}"></script>
 @endsection('content')

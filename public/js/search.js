@@ -20,7 +20,10 @@ $(function(){
             $("products_table").replaceWith(newData); //返ってきたtableの中身を差し替え！
 
         //ソートの部分⇒検索の段階でViewファイルを読み込み直しているので、ソートの関数をここでももう一度読んであげる！
-        // ソートの関数（）
+        $(document).ready(function() { 
+            $(".table_sort").tablesorter();
+        });
+        
         })
         .fail(function(){
             alert('エラー')
