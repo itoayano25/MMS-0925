@@ -9,6 +9,7 @@ class Company extends Model
 {
     use HasFactory;
 
+    // 企業名検索
     public function findCompanies()
     {
         return $this->all();

@@ -50,12 +50,9 @@ class ProductController extends Controller
         }
         
         $products = $query->get();
-
         // CompanyModelからDBの情報取得
         $companies = $this->company->findCompanies();
 
-        //STEP8.doneへのjsonDBを渡す
-        //return response()->json(['products' => $products, 'companies' => $companies]);
         return view('products.index',compact('products','companies'));
     }
 
