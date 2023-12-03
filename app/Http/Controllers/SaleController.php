@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class SaleController extends Controller
         $quantity = $request->input('quantity', 1);
 
         // DBから対象商品を検索・取得
-        $product = Product::find( $productId);
+        $product = Product::find($productId);
 
         // 商品が存在していない、在庫不足の場合のバリデーション
         if(!$product){

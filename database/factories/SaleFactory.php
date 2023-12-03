@@ -17,7 +17,7 @@ class SaleFactory extends Factory
     public function definition()
     {
         return [
-            'product_id' => \App\Models\Product::factory(),
+            'product_id' => Product::factory(),
         ];
     }
 }
