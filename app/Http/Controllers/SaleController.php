@@ -9,6 +9,8 @@ use App\Models\Sale;
 class SaleController extends Controller
 {
     public function purchase(Request $request){
+        //トランザクション
+        DB::transaction(function() use($request){
         // リクエストから商品IDと購入数を取得
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity', 1);
@@ -31,7 +33,7 @@ class SaleController extends Controller
             'product_id' => $productId,
         ]);
         $sale->save();
-
+        });
         return response()->json(['message' => '購入成功']);
     }
 }
