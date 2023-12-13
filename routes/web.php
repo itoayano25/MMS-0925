@@ -26,7 +26,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
-    Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class,);
+    // 非同期通信のsearch.jsがリダイレクトされる⇒resourceでまとめたのが起因？？？
     Route::post('/destroy/{id}',[ProductController::class,'destroy']);
 });
 

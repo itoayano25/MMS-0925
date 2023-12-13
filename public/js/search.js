@@ -15,7 +15,7 @@ $(function(){
             data: formData, //requestには勝手に飛ぶので、｛request:formData｝にしなくてもよい！
         })
         .done(function(data){
-        // doneに帰ってきたindexviewファイルがfu(data)に入っている（コントローラーのreturnが返ってくるもの）
+        // doneに帰ってきたindexviewファイルがfunction(data)に入っている（コントローラーのreturnが返ってくるもの）
             let newData =$(data).find('#products_table'); //findで帰ってきたdataの中からtableの中身だけを抽出
             $("products_table").replaceWith(newData); //返ってきたtableの中身を差し替え！
 
