@@ -46,6 +46,7 @@
 
                 {{-- 検索ボタン --}}
                 <div class="col-sm-12">
+                    {{--　type=inputをボタンに変更し、画面遷移を防ぐつもりが反応しなくなった --}}
                     <button class="btn btn-success btn-search" type="submit">検索</button>
                 </div>
             </form>
@@ -100,10 +101,7 @@
             </table>
         </div>
     </div>
-{{-- 削除のjs --}}
-<script src="{{asset('js/delete.js')}}"></script>
-{{-- 検索のjs --}}
-<script src="{{asset('js/search.js')}}"></script>
-{{-- ソートのjs --}}
-<script src="{{asset('js/sort.js')}}"></script>
+{{-- 非同期処理のjs --}}
+<script src="{{asset('js/hidouki.js')}}"></script>
+
 @endsection('content')
